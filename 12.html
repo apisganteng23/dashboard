@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Hama & Penyakit Cabai</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f4f4;
+    }
+    .header {
+      background-color: #e63946;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .sidebar {
+      position: fixed;
+      width: 220px;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background-color: #1d3557;
+      padding-top: 100px;
+      color: white;
+    }
+    .sidebar a {
+      display: block;
+      color: white;
+      padding: 12px 20px;
+      text-decoration: none;
+    }
+    .sidebar a:hover {
+      background-color: #457b9d;
+    }
+    .main {
+      margin-left: 240px;
+      padding: 20px;
+    }
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      padding: 15px;
+    }
+    .card h3 {
+      margin-top: 0;
+    }
+    .card a img, table img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+    canvas {
+      max-width: 100%;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    table th, table td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
+    }
+    table th {
+      background-color: #f1faee;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Dashboard SIM Hama & Penyakit Cabai</h1>
+  </div>
+
+  <div class="sidebar">
+    <a href="#dashboard">Dashboard</a>
+    <a href="#tabel">Data Hama/Penyakit</a>
+    <a href="#grafik">Grafik Statistik</a>
+  </div>
+
+  <div class="main" id="dashboard">
+    <h2>Dashboard Visual</h2>
+    <div class="dashboard-grid">
+      <div class="card">
+        <a href="https://upload.wikimedia.org/wikipedia/commons/b/b1/Anthracnose.jpg" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Anthracnose.jpg" alt="Antraknosa">
+        </a>
+        <h3>Antraknosa</h3>
+        <p>Bercak hitam pada buah, penyakit umum saat musim hujan.</p>
+      </div>
+      <div class="card">
+        <a href="https://upload.wikimedia.org/wikipedia/commons/7/77/Aphid_on_leaf05.jpg" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/7/77/Aphid_on_leaf05.jpg" alt="Kutu Daun">
+        </a>
+        <h3>Kutu Daun</h3>
+        <p>Daun menguning dan keriting akibat serangan kutu daun.</p>
+      </div>
+      <div class="card">
+        <a href="https://upload.wikimedia.org/wikipedia/commons/7/72/Spodoptera_litura_larva.jpg" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Spodoptera_litura_larva.jpg" alt="Ulat Grayak">
+        </a>
+        <h3>Ulat Grayak</h3>
+        <p>Makan daun hingga berlubang besar dan merusak produktivitas.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="main" id="tabel">
+    <h2>Data 10 Jenis Hama dan Penyakit Cabai</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>No</th><th>Nama</th><th>Tipe</th><th>Gejala</th><th>Gambar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>Antraknosa</td><td>Penyakit</td><td>Bercak hitam di buah</td><td><img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Anthracnose.jpg" alt="Antraknosa"></td></tr>
+        <tr><td>2</td><td>Layu Fusarium</td><td>Penyakit</td><td>Tanaman layu tiba-tiba</td><td><img src="https://i.ibb.co/ZLzLktW/layu.jpg" alt="Layu Fusarium"></td></tr>
+        <tr><td>3</td><td>Busuk Daun</td><td>Penyakit</td><td>Daun busuk & lemas</td><td><img src="https://i.ibb.co/LCSpm0k/busukdaun.jpg" alt="Busuk Daun"></td></tr>
+        <tr><td>4</td><td>Virus Gemini</td><td>Penyakit</td><td>Daun mengecil & keriting</td><td><img src="https://i.ibb.co/jTNNwQs/gemini.jpg" alt="Virus Gemini"></td></tr>
+        <tr><td>5</td><td>Kutu Daun</td><td>Hama</td><td>Daun menguning & melintir</td><td><img src="https://upload.wikimedia.org/wikipedia/commons/7/77/Aphid_on_leaf05.jpg" alt="Kutu Daun"></td></tr>
+        <tr><td>6</td><td>Thrips</td><td>Hama</td><td>Daun perak & bercak putih</td><td><img src="https://i.ibb.co/VHLYMR1/thrips.jpg" alt="Thrips"></td></tr>
+        <tr><td>7</td><td>Tungau Merah</td><td>Hama</td><td>Daun keriput & menguning</td><td><img src="https://i.ibb.co/tHbmv0s/tungau.jpg" alt="Tungau Merah"></td></tr>
+        <tr><td>8</td><td>Ulat Grayak</td><td>Hama</td><td>Lubang besar di daun</td><td><img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Spodoptera_litura_larva.jpg" alt="Ulat Grayak"></td></tr>
+        <tr><td>9</td><td>Lalat Buah</td><td>Hama</td><td>Buah membusuk dari dalam</td><td><img src="https://i.ibb.co/JFzbdcs/lalatbuah.jpg" alt="Lalat Buah"></td></tr>
+        <tr><td>10</td><td>Cendawan Phytophthora</td><td>Penyakit</td><td>Batang lunak & berjamur</td><td><img src="https://i.ibb.co/jRrkZ07/phytophthora.jpg" alt="Phytophthora"></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="main" id="grafik">
+    <h2>Grafik Frekuensi Serangan Hama/Penyakit</h2>
+    <canvas id="chartHama" height="120"></canvas>
+    <canvas id="chartPie" height="120" style="margin-top: 30px;"></canvas>
+    <canvas id="chartLine" height="120" style="margin-top: 30px;"></canvas>
+  </div>
+
+  <script>
+    const ctx = document.getElementById('chartHama').getContext('2d');
+    const chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Antraknosa', 'Layu Fusarium', 'Busuk Daun', 'Virus Gemini', 'Kutu Daun', 'Thrips', 'Tungau Merah', 'Ulat Grayak', 'Lalat Buah', 'Cendawan Phytophthora'],
+        datasets: [{
+          label: 'Jumlah Kasus Bulan Ini',
+          data: [20, 15, 10, 8, 18, 12, 9, 22, 16, 11],
+          backgroundColor: '#e63946'
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        },
+        plugins: {
+          datalabels: {
+            formatter: (value, ctx) => {
+              let total = 0;
+              let dataset = ctx.chart.data.datasets[0];
+              dataset.data.forEach(data => {
+                total += data;
+              });
+              let percentage = ((value / total) * 100).toFixed(2) + '%';
+              return percentage;
+            },
+            color: 'white',
+            font: {
+              weight: 'bold'
+            }
+          }
+        }
+      }
+    });
+
+    const ctxPie = document.getElementById('chartPie').getContext('2d');
+    const pieChart = new Chart(ctxPie, {
+      type: 'pie',
+      data: {
+        labels: ['Antraknosa', 'Layu Fusarium', 'Busuk Daun', 'Virus Gemini', 'Kutu Daun', 'Thrips', 'Tungau Merah', 'Ulat Grayak', 'Lalat Buah', 'Cendawan Phytophthora'],
+        datasets: [{
+          data: [20, 15, 10, 8, 18, 12, 9, 22, 16, 11],
+          backgroundColor: [
+            '#e63946', '#f1c40f', '#2ecc71', '#3498db', '#9b59b6',
+            '#1abc9c', '#e67e22', '#34495e', '#fd79a8', '#6c5ce7'
+          ]
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'bottom'
+          },
+          title: {
+            display: true,
+            text: 'Distribusi Kasus Hama & Penyakit'
+          },
+          datalabels: {
+            formatter: (value, ctx) => {
+              let total = 0;
+              let dataset = ctx.chart.data.datasets[0];
+              dataset.data.forEach(data => {
+                total += data;
+              });
+              let percentage = ((value / total) * 100).toFixed(2) + '%';
+              return percentage;
+            },
+            color: 'white',
+            font: {
+              weight: 'bold'
+            }
+          }
+        }
+      }
+    });
+
+    const ctxLine = document.getElementById('chartLine').getContext('2d');
+    const lineChart = new Chart(ctxLine, {
+      type: 'line',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul'],
+        datasets: [{
+          label: 'Total Serangan Bulanan',
+          data: [60, 80, 70, 90, 100, 85, 95],
+          fill: false,
+          borderColor: '#2c3e50',
+          tension: 0.1
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: 'Tren Bulanan Serangan Hama dan Penyakit'
+          },
+          datalabels: {
+            formatter: (value, ctx) => {
+              let total = 0;
+              let dataset = ctx.chart.data.datasets[0];
+              dataset.data.forEach(data => {
+                total += data;
+              });
+              let percentage = ((value / total) * 100).toFixed(2) + '%';
+              return percentage;
+            },
+            color: 'white',
+            font: {
+              weight: 'bold'
+            }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
